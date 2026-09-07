@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StyleSense AI Analysis</title>
+
+    <link rel="stylesheet" href="analyze.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="main">
+
+
+        <nav>
+
+            <h1>StyleSense</h1>
+
+            <div class="nav-right">
+
+                <a href="../PART-1/index.html">Home</a>
+                <a href="../PART-2/analyze.html">AI Analysis</a>
+
+            </div>
+
+        </nav>
+
+
+
+
+        <section id="hero">
+
+            <h1>
+                AI Fashion Stylist
+            </h1>
+
+            <p>
+
+                Upload your image and let our AI analyze your
+                skin tone, clothing style, body proportions,
+                and recommend outfits according to your
+                budget and preferences.
+
+            </p>
+
+        </section>
+
+
+
+
+        <section id="analysisContainer">
+
+
+
+
+            <div id="leftPanel">
+
+
+
+                <div class="card">
+
+                    <h2>
+
+                        Upload Your Image
+
+                    </h2>
+
+                    <input type="file" id="imageInput" accept="image/*">
+
+
+
+                    <div class="or">
+
+                        OR
+
+                    </div>
+
+
+
+                    <button id="cameraBtn">
+
+                        <i class="ri-camera-fill"></i>
+
+                        Open Camera
+
+                    </button>
+
+                </div>
+
+
+
+
+
+
+                <div class="card">
+
+                    <video id="video" autoplay playsinline>
+
+                    </video>
+
+                    <canvas id="canvas">
+
+                    </canvas>
+
+                    <button id="captureBtn">
+
+                        Capture Photo
+
+                    </button>
+
+                </div>
+
+
+
+
+
+
+                <div class="card">
+
+                    <h2>
+
+                        Image Preview
+
+                    </h2>
+
+                    <img id="previewImage" src="">
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+            <div id="rightPanel">
+
+
+
+
+                <div class="card">
+
+                    <h2>
+
+                        Tell us your requirements
+
+                    </h2>
+
+
+
+                    <label>
+
+                        Occasion
+
+                    </label>
+
+                    <select id="occasion">
+
+                        <option value="Office">Office</option>
+
+                        <option value="College">College</option>
+
+                        <option value="Casual">Casual</option>
+
+                        <option value="Wedding">Wedding</option>
+
+                        <option value="Party">Party</option>
+
+                        <option value="Travel">Travel</option>
+
+                        <option value="Gym">Gym</option>
+
+                    </select>
+
+
+
+                    <label>
+
+                        Fashion Style
+
+                    </label>
+
+                    <select id="style">
+
+                        <option>
+
+                            Old Money
+
+                        </option>
+
+                        <option>
+
+                            Streetwear
+
+                        </option>
+
+                        <option>
+
+                            Korean
+
+                        </option>
+
+                        <option>
+
+                            Minimal
+
+                        </option>
+
+                        <option>
+
+                            Luxury
+
+                        </option>
+
+                        <option>
+
+                            Business Casual
+
+                        </option>
+
+                        <option>
+
+                            Formal
+
+                        </option>
+
+                        <option>
+
+                            Vintage
+
+                        </option>
+
+                    </select>
+
+
+
+
+                    <label>
+
+                        Budget
+
+                    </label>
+
+                    <input type="number" id="budget" placeholder="Enter Budget">
+
+
+
+
+                    <label>
+
+                        Preferred Colours
+
+                    </label>
+
+                    <input type="text" id="colour" placeholder="Optional">
+
+
+
+
+                    <label>
+
+                        Preferred Brands
+
+                    </label>
+
+                    <input type="text" id="brand" placeholder="Optional">
+
+
+
+
+                    <button id="analyzeBtn">
+
+                        Analyze My Outfit
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section id="loadingSection">
+
+            <div class="loaderBox">
+
+                <div class="loader"></div>
+
+                <h2>AI is analyzing your image...</h2>
+
+                <div class="steps">
+
+                    <p id="step1">✔ Detecting Skin Tone</p>
+                    <p id="step2">✔ Detecting Face Shape</p>
+                    <p id="step3">✔ Detecting Body Proportions</p>
+                    <p id="step4">✔ Understanding Fashion Style</p>
+                    <p id="step5">✔ Finding Best Outfit</p>
+                    <p id="step6">✔ Searching Products</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+
+        <section id="resultSection">
+
+
+
+            <div class="resultHeader">
+
+                <h1>AI Fashion Report</h1>
+
+                <p>
+
+                    Personalized fashion recommendations
+                    generated using AI.
+
+                </p>
+
+            </div>
+
+
+
+
+            <div class="resultCard">
+
+                <h2>Skin Tone Analysis</h2>
+
+                <p id="skinTone">
+
+                    Detecting...
+
+                </p>
+
+            </div>
+
+
+
+
+            <div class="resultCard">
+
+                <h2>
+
+                    Why These Colours?
+
+                </h2>
+
+                <p id="colourExplanation">
+
+                    AI explanation will appear here.
+
+                </p>
+
+
+
+                <div id="recommendedColours">
+
+                </div>
+
+            </div>
+
+
+
+
+            <div class="resultCard">
+
+                <h2>
+
+                    Outfit Recommendation
+
+                </h2>
+
+
+
+                <div id="outfitContainer">
+
+
+
+                    <div class="outfit">
+
+                        <h3>Top Wear</h3>
+
+                        <p id="topWear"></p>
+
+                    </div>
+
+
+
+                    <div class="outfit">
+
+                        <h3>Bottom Wear</h3>
+
+                        <p id="bottomWear"></p>
+
+                    </div>
+
+
+
+                    <div class="outfit">
+
+                        <h3>Shoes</h3>
+
+                        <p id="shoes"></p>
+
+                    </div>
+
+
+
+                    <div class="outfit">
+
+                        <h3>Watch</h3>
+
+                        <p id="watch"></p>
+
+                    </div>
+
+
+
+                    <div class="outfit">
+
+                        <h3>Accessories</h3>
+
+                        <p id="accessories"></p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+            <div class="resultCard">
+
+                <h2>
+
+                    Estimated Budget
+
+                </h2>
+
+                <h1 id="estimatedBudget">
+
+                    ₹0
+
+                </h1>
+
+            </div>
+
+
+
+
+            <div class="resultCard">
+
+                <h2>
+
+                    Recommended Products
+
+                </h2>
+
+                <div id="productContainer">
+
+
+                </div>
+
+            </div>
+
+
+
+
+            <div class="resultCard">
+
+                <h2>
+
+                    AI Fashion Explanation
+
+                </h2>
+
+                <div id="reasonBox">
+
+                </div>
+
+            </div>
+
+
+
+
+            <div class="resultCard">
+
+                <h2>
+
+                    Continue with AI
+
+                </h2>
+
+                <div id="chatBox">
+
+                    <div id="messages">
+
+                    </div>
+
+                </div>
+
+                <div id="chatInput">
+
+                    <input type="text" id="userMessage" placeholder="Ask AI something...">
+
+                    <button id="sendBtn">
+
+                        <i class="ri-send-plane-fill"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+        </section>
+
+    </div>
+
+    <script src="analyze.js"></script>
+
+</body>
+
+</html>

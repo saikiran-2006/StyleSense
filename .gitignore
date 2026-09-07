@@ -1,0 +1,4 @@
+part-2/stylesense-backend/.env
+node_modules/
+.env
+*.log
